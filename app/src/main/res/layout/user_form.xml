@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="80dp"
+        android:paddingLeft="@dimen/padding_edit_text"
+        android:paddingRight="@dimen/padding_edit_text"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:text="@string/update_user_form_name" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_edit_text"
+            android:background="@color/colorIcons"
+            android:hint="@string/update_user_form_name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:text="@string/update_user_form_last_name" />
+
+        <EditText
+            android:id="@+id/editTextLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_edit_text"
+            android:background="@color/colorIcons"
+            android:hint="@string/update_user_form_last_name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:text="@string/update_user_form_gender" />
+
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="@dimen/padding_edit_text"
+            android:background="@color/colorIcons" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:text="@string/user_form_birth_date" />
+
+        <EditText
+            android:id="@+id/birthDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_edit_text"
+            android:background="@color/colorIcons"
+            android:hint="@string/user_form_birth_date" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp">
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/save_button"
+            android:background="@color/ColorLightGray"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp">
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

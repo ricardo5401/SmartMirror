@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Smart Mirror</string>
+    <string name="title_activity_login">Iniciar Sesion</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="facebook_app_id">753492908146397</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
+    </string>
+    <string name="user_first_name_hint">First Name</string>
+    <string name="user_last_name_hint">Last Name</string>
+    <string name="user_email_hint">Email</string>
+    <string name="user_age_hint">Age</string>
+    <string name="user_gender_hint">Gender (Default Male, On for Female)</string>
+    <string name="title_activity_pantalla_bienvenida">PantallaBienvenida</string>
+    <string name="input_birth_date_hint">Birth date (yyyy-MM-dd)</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="take_one_picture">Solo falta una foto en tu registro. Tómate 1 foto y envíala.</string>
+    <string name="take_two_picture">Al parecer faltan 2 fotos en tu registro. Tómate 2 fotos y envíalas.</string>
+    <string name="take_three_picture">Al parecer no tienes fotos registradas. Tómate 3 fotos y envíalas.</string>
+    <string name="smart_mirror_is_ready">El smart mirror esta listo para reconocerte</string>
+    <string name="sign_in">Iniciando...</string>
+    <string name="update_user_form_name">NOMBRES</string>
+    <string name="update_user_form_last_name">APELLIDOS</string>
+    <string name="update_user_form_gender">GENERO</string>
+    <string name="user_form_birth_date">FECHA DE NACIEMINTO</string>
+    <string name="photo_activity_take_again">Tomar denuevo</string>
+    <string-array name="gender_array">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+</resources>
