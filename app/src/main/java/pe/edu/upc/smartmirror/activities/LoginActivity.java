@@ -42,6 +42,7 @@ public class LoginActivity extends BaseActivity {
 
     static final int SPLASH_SCREEN_DELAY = 2000;
     private static final int RC_SIGN_IN = 20;
+    private static final int FB_RC_SIGN_IN = 30;
     TextView loadingTextView;
     GifImageView loadingGiftView;
     LoginButton facebookButton;
@@ -49,6 +50,7 @@ public class LoginActivity extends BaseActivity {
     CallbackManager callbackManager;
     GoogleApiClient mGoogleApiClient;
     int loader;
+    User fbUser;
     static Context context;
     private Timer timer;
 
@@ -116,10 +118,15 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.googleButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
+                requestGoogleAuth(RC_SIGN_IN);
             }
         });
+    }
+
+
+    private void requestGoogleAuth(int requestCode){
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, requestCode);
     }
 
     private void initializeFacebookAuth(){
@@ -137,7 +144,9 @@ public class LoginActivity extends BaseActivity {
                                 @Override
                                 public void onCompleted(JSONObject object, GraphResponse response) {
                                     Log.v("FACEBOOK_AUTH", response.toString());
-                                    handleSignInResult( Facebook.SignInResult(object) );
+                                    //asign result to temp fb_user
+                                    fbUser = Facebook.SignInResult(object);
+                                    handleSignInResult(fbUser);
                                 }
                             });;
                     request.setParameters(Facebook.Parameters());
@@ -179,7 +188,13 @@ public class LoginActivity extends BaseActivity {
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult( Google.SignInResult(result) );
-        }else{ //facebook callback
+        }else if( requestCode == FB_RC_SIGN_IN ){
+            // TThis request is only accessed when register is required
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            fbUser.setRefreshToken( Google.SignInResult(result).getRefreshToken() );
+            signUP(fbUser);
+        }
+        else{ //facebook callback
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -210,6 +225,7 @@ public class LoginActivity extends BaseActivity {
                             logUser(authenticatedUser);
                             checkUserFields(authenticatedUser);
                         }else{
+
                             signUP(user);
                         }
                     }
@@ -218,6 +234,14 @@ public class LoginActivity extends BaseActivity {
                         manageSignInError(error, user);
                     }
                 });
+    }
+
+    private void checkAccountType(User user){
+        if(user.getAccountType() == "facebook" && user.getRefreshToken().isEmpty()){
+            requestGoogleAuth(FB_RC_SIGN_IN);
+        }else{
+            signUP(user);
+        }
     }
 
     public void signUP(final User user){
@@ -259,7 +283,7 @@ public class LoginActivity extends BaseActivity {
     private void manageSignInError(ANError error, User user){
         if(error.getErrorCode() == 404){
             Log.i(SIGNIN_TAG, "Not found, trying sign up");
-            signUP(user);
+            checkAccountType(user);
         }else{
             ManageUnkownError(error, SIGNIN_TAG);
         }
