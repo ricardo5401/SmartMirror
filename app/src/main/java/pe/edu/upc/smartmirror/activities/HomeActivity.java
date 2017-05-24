@@ -81,6 +81,7 @@ public class HomeActivity extends BaseActivity {
                 logout();
                 return true;
             case R.id.settings:
+                goToSettings(user.getForeId());
                 return true;
         }
         return false;

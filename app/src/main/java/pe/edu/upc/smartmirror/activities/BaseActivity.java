@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.io.File;
 
 import pe.edu.upc.smartmirror.backend.models.User;
+import pe.edu.upc.smartmirror.backend.models.Widget;
 import pe.edu.upc.smartmirror.backend.network.Constants;
 
 /**
@@ -40,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String SIGNUP_TAG = "SIGNUP_USER";
     public static final String LOG_USER = "LOG_USER";
     public static final String SHOW_LOADER = "LOADING";
+    public static final String WIDGET_TAG = "UPDATE_WIDGET";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +116,37 @@ public class BaseActivity extends AppCompatActivity {
                 });
     }
 
+    public void updateWidget(Widget mWidget){
+        String url = Constants.Server.WIDGET_URL + "/" + String.valueOf(mWidget.getUserId());
+        Log.e(WIDGET_TAG, "Widget URL: " + url);
+        AndroidNetworking.put(url)
+                .addHeaders("Content-Type", "application/x-www-form-urlencoded")
+                .addHeaders("charset", "utf-8")
+                .addBodyParameter("Clock", String.valueOf(mWidget.isClock()))
+                .addBodyParameter("Weather", String.valueOf(mWidget.isWeather()))
+                .addBodyParameter("News", String.valueOf(mWidget.isNews()))
+                .addBodyParameter("Calendar", String.valueOf(mWidget.isCalendar()))
+                .addBodyParameter("Player", String.valueOf(mWidget.isPlayer()))
+                .addBodyParameter("Mail", String.valueOf(mWidget.isMail()))
+                .setTag(WIDGET_TAG)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i(WIDGET_TAG, "success!!");
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        if(error.getErrorCode() == 0){
+                            Log.e(WIDGET_TAG, "Corregir la respuesta del servidor, retorno no content");
+                        }else{
+                            showError("Ocurrio un error al actualizar, intenta mas tarde");
+                        }
+                    }
+                });
+    }
+
     public void checkUserFields(User user){
         Log.i(SIGNIN_TAG, "Checking user");
         if(user.requireUpdate()){
@@ -134,6 +167,12 @@ public class BaseActivity extends AppCompatActivity {
     public void goToLogin(){
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra(SHOW_LOADER, 5);
+        startActivity(intent);
+    }
+
+    public void goToSettings(int userId){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        intent.putExtra("userId", userId);
         startActivity(intent);
     }
 
