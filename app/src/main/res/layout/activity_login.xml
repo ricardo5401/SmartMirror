@@ -56,19 +56,37 @@
         app:layout_constraintTop_toBottomOf="@+id/loadingGift"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="54dp"
+        android:id="@+id/facebookValidator"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="50dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:visibility="invisible"
+        android:background="@android:color/transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.911"/>
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebookButton"
         android:layout_width="230dp"
         android:layout_height="34dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        android:visibility="invisible"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
         android:layout_marginTop="8dp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

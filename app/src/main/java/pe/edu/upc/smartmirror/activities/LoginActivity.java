@@ -1,10 +1,13 @@
 package pe.edu.upc.smartmirror.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -46,6 +49,7 @@ public class LoginActivity extends BaseActivity {
     TextView loadingTextView;
     GifImageView loadingGiftView;
     LoginButton facebookButton;
+    Button facebookValidator;
     SignInButton googleButton;
     CallbackManager callbackManager;
     GoogleApiClient mGoogleApiClient;
@@ -68,7 +72,7 @@ public class LoginActivity extends BaseActivity {
         loadingGiftView = (GifImageView) findViewById(R.id.loadingGift);
         googleButton = (SignInButton) findViewById(R.id.googleButton);
         TextView textView = (TextView) googleButton.getChildAt(0);
-        textView.setText("Continuar con Google");
+        textView.setText(R.string.continue_with_google);
         textView.setTextAlignment(ViewFlipper.TEXT_ALIGNMENT_TEXT_START);
         facebookButton = (LoginButton) findViewById(R.id.facebookButton);
         callbackManager = CallbackManager.Factory.create();
@@ -76,6 +80,7 @@ public class LoginActivity extends BaseActivity {
         context = this;
         initializeGoogleAuth();
         initializeFacebookAuth();
+        initializeFacebookValidator();
         timer = new Timer();
     }
 
@@ -93,6 +98,7 @@ public class LoginActivity extends BaseActivity {
         loadingTextView.setVisibility(View.INVISIBLE);
         googleButton.setVisibility(View.VISIBLE);
         facebookButton.setVisibility(View.VISIBLE);
+        facebookValidator.setVisibility(View.VISIBLE);
     }
 
     private void showLoading(){
@@ -100,6 +106,7 @@ public class LoginActivity extends BaseActivity {
         loadingTextView.setVisibility(View.VISIBLE);
         googleButton.setVisibility(View.INVISIBLE);
         facebookButton.setVisibility(View.INVISIBLE);
+        facebookValidator.setVisibility(View.INVISIBLE);
     }
 
     private void goToNextActivity(String email){
@@ -128,6 +135,32 @@ public class LoginActivity extends BaseActivity {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, requestCode);
     }
+
+    private void initializeFacebookValidator(){
+        facebookValidator = (Button) findViewById(R.id.facebookValidator);
+        facebookValidator.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(R.string.facebook_modal_title);
+                builder.setMessage(R.string.facebook_modal_message);
+                builder.setPositiveButton(R.string.continue_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        facebookButton.callOnClick();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        showMessage("social auth cancel");
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+    }
+
 
     private void initializeFacebookAuth(){
         FacebookSdk.sdkInitialize(getApplicationContext());

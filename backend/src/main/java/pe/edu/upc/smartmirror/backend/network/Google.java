@@ -66,15 +66,6 @@ public class Google {
             return null;
         }
     }
-    public static User SignInResult(GoogleSignInResult result, User user){
-        //Pedir credenciales de google cuando se registre con facebook
-        //por ello solo actualizo los google fields
-        if (result.isSuccess()) {
-            GoogleSignInAccount acc = result.getSignInAccount();
-            return user.setRefreshToken(acc.getServerAuthCode());
-        }
-        return user;
-    }
 
     private static void LogResult(GoogleSignInAccount acc){
         Log.e("GOOGLE LOGIN", "email= "+ acc.getEmail());
