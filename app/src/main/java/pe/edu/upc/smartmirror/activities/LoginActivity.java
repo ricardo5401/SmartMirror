@@ -36,7 +36,7 @@ import java.util.TimerTask;
 
 import pe.edu.upc.smartmirror.R;
 import pe.edu.upc.smartmirror.backend.models.User;
-import pe.edu.upc.smartmirror.backend.network.Constants;
+import pe.edu.upc.smartmirror.backend.network.SmartMirrorAPI;
 import pe.edu.upc.smartmirror.backend.network.Facebook;
 import pe.edu.upc.smartmirror.backend.network.Google;
 import pl.droidsonroids.gif.GifImageView;
@@ -243,8 +243,8 @@ public class LoginActivity extends BaseActivity {
 
     protected void signIn(final User user){
         setLoadingText("Iniciando...");
-        Log.i(SIGNIN_TAG, "URL: " + Constants.Server.USER_URL);
-        AndroidNetworking.get(Constants.Server.USER_URL)
+        Log.i(SIGNIN_TAG, "URL: " + SmartMirrorAPI.Server.USER_URL);
+        AndroidNetworking.get(SmartMirrorAPI.Server.USER_URL)
                 .addQueryParameter("email", user.getEmail())
                 .setTag(SIGNIN_TAG)
                 .setPriority(Priority.MEDIUM)
@@ -279,8 +279,8 @@ public class LoginActivity extends BaseActivity {
 
     public void signUP(final User user){
         setLoadingText("Registrando...");
-        Log.i(SIGNUP_TAG, "URL: " + Constants.Server.USER_URL);
-        AndroidNetworking.post(Constants.Server.USER_URL)
+        Log.i(SIGNUP_TAG, "URL: " + SmartMirrorAPI.Server.USER_URL);
+        AndroidNetworking.post(SmartMirrorAPI.Server.USER_URL)
                 .addHeaders("Content-Type", "application/x-www-form-urlencoded")
                 .addHeaders("charset", "utf-8")
                 .addBodyParameter("FirstName", user.getFirstName())

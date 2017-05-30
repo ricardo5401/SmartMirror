@@ -6,11 +6,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -24,7 +22,7 @@ import org.json.JSONObject;
 import java.io.File;
 
 import pe.edu.upc.smartmirror.R;
-import pe.edu.upc.smartmirror.backend.network.Constants;
+import pe.edu.upc.smartmirror.backend.network.SmartMirrorAPI;
 import pe.edu.upc.smartmirror.backend.utils.Encoder;
 import pe.edu.upc.smartmirror.backend.utils.ImageHelper;
 
@@ -103,7 +101,7 @@ public class PhotoActivity extends BaseActivity {
     }
 
     private void sendPhoto(final Bitmap photo){
-        AndroidNetworking.post(Constants.Server.PICTURE_URL)
+        AndroidNetworking.post(SmartMirrorAPI.Server.PICTURE_URL)
                 .addBodyParameter("UserId", String.valueOf(userId))
                 .addBodyParameter("Base64Photo", Encoder.ToBase64(photo))
                 .setTag(TAG)
@@ -143,14 +141,14 @@ public class PhotoActivity extends BaseActivity {
 
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, Constants.MediaType.PHOTO);
+            startActivityForResult(takePictureIntent, SmartMirrorAPI.MediaType.PHOTO);
         }
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.MediaType.PHOTO && resultCode == RESULT_OK) {
+        if (requestCode == SmartMirrorAPI.MediaType.PHOTO && resultCode == RESULT_OK) {
             ContentResolver contentResolver = getContentResolver();
             contentResolver.notifyChange(uri,null);
             //Bitmap bm;

@@ -27,7 +27,7 @@ import java.io.File;
 
 import pe.edu.upc.smartmirror.backend.models.User;
 import pe.edu.upc.smartmirror.backend.models.Widget;
-import pe.edu.upc.smartmirror.backend.network.Constants;
+import pe.edu.upc.smartmirror.backend.network.SmartMirrorAPI;
 
 /**
  * Created by ricardo on 5/19/17.
@@ -80,7 +80,7 @@ public class BaseActivity extends AppCompatActivity {
         Log.i(UPDATE_TAG, "updating user");
         logUser(user);
         showDialogLoading("Updating...");
-        String url = Constants.Server.USER_URL + "/" + String.valueOf( user.getForeId() );
+        String url = SmartMirrorAPI.Server.USER_URL + "/" + String.valueOf( user.getForeId() );
         Log.i(UPDATE_TAG, "URL: " + url);
         AndroidNetworking.put(url)
                 .addHeaders("Content-Type", "application/x-www-form-urlencoded")
@@ -117,7 +117,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void updateWidget(Widget mWidget){
-        String url = Constants.Server.WIDGET_URL + "/" + String.valueOf(mWidget.getUserId());
+        String url = SmartMirrorAPI.Server.WIDGET_URL + "/" + String.valueOf(mWidget.getUserId());
         Log.e(WIDGET_TAG, "Widget URL: " + url);
         AndroidNetworking.put(url)
                 .addHeaders("Content-Type", "application/x-www-form-urlencoded")

@@ -24,11 +24,11 @@ public class Google {
     private static GoogleSignInOptions getOptions(){
         return new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(Constants.Google.CLIENT_ID)
-                .requestServerAuthCode(Constants.Google.CLIENT_ID, true)
+                .requestIdToken(SmartMirrorAPI.Google.CLIENT_ID)
+                .requestServerAuthCode(SmartMirrorAPI.Google.CLIENT_ID, true)
                 .requestScopes(
-                        new Scope(Constants.Google.EMAIL_SCOPE),
-                        new Scope(Constants.Google.CALENDAR_SCOPE))
+                        new Scope(SmartMirrorAPI.Google.EMAIL_SCOPE),
+                        new Scope(SmartMirrorAPI.Google.CALENDAR_SCOPE))
                 .requestEmail().build();
     }
 

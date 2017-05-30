@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,19 +16,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.login.LoginManager;
-
 import pe.edu.upc.smartmirror.R;
 import pe.edu.upc.smartmirror.backend.models.User;
-import pe.edu.upc.smartmirror.backend.network.Constants;
+import pe.edu.upc.smartmirror.backend.network.SmartMirrorAPI;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class HomeActivity extends BaseActivity {
 
     private static final String TAG = "MAIN_ACTIVITY";
     private boolean cameraAvailable =false;
-    final int PERMISSION_REQUEST_CAMERA = Constants.Permisions.PERMISSION_REQUEST_CAMERA;
-    final int CAPTURE_IMAGE_REQUEST_CODE = Constants.Permisions.CAPTURE_IMAGE_REQUEST_CODE;
+    final int PERMISSION_REQUEST_CAMERA = SmartMirrorAPI.Permisions.PERMISSION_REQUEST_CAMERA;
+    final int CAPTURE_IMAGE_REQUEST_CODE = SmartMirrorAPI.Permisions.CAPTURE_IMAGE_REQUEST_CODE;
     ImageButton photoImageButton1;
     ImageButton photoImageButton2;
     ImageButton photoImageButton3;

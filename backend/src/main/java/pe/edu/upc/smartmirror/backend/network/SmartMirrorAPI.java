@@ -3,7 +3,7 @@ package pe.edu.upc.smartmirror.backend.network;
 /**
  * Created by ricardo on 5/19/17.
  */
-public class Constants {
+public class SmartMirrorAPI {
 
     public static class Google {
         public static String CLIENT_ID = "23682495278-8ks35ogopofp419ipiapo7o8of3ruluc.apps.googleusercontent.com";
