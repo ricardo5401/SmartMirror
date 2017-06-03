@@ -37,6 +37,10 @@
     <string name="continue_text">Continuar</string>
     <string name="cancel_text">Cancelar</string>
     <string name="continue_with_google">Continuar con Google</string>
+    <string name="attention_text">¡ATENCION!</string>
+    <string name="alert_message_1">Reflection utilizara la cuenta de</string>
+    <string name="alert_message_2">Google vinculada a  este equipo</string>
+    <string name="alert_message_3">para sincronizar  evento y correo</string>
     <string-array name="gender_array">
         <item>Masculino</item>
         <item>Femenino</item>

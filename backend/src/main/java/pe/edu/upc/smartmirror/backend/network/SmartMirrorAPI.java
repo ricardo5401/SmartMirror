@@ -21,6 +21,9 @@ public class SmartMirrorAPI {
         public static final int CAPTURE_IMAGE_REQUEST_CODE = 100;
         public static final int CAPTURE_VIDEO_REQUEST_CODE = 200;
         public static final int PERMISSION_REQUEST_CAMERA = 100;
+        public static final int FACEBOOK_ALERT_REQUEST = 300;
+        public static final int FACEBOOK_ALERT_ACCEPTED = 400;
+        public static final int FACEBOOK_ALERT_CANCEL = 500;
     }
 
     public static class MediaType {

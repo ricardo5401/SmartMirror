@@ -141,22 +141,8 @@ public class LoginActivity extends BaseActivity {
         facebookValidator.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle(R.string.facebook_modal_title);
-                builder.setMessage(R.string.facebook_modal_message);
-                builder.setPositiveButton(R.string.continue_text, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        facebookButton.callOnClick();
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel_text, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                        showMessage("social auth cancel");
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                Intent intent = new Intent(context, FacebookConfirmActivity.class);
+                startActivityForResult(intent, SmartMirrorAPI.Permisions.FACEBOOK_ALERT_REQUEST);
             }
         });
     }
@@ -226,6 +212,11 @@ public class LoginActivity extends BaseActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             fbUser.setRefreshToken( Google.SignInResult(result).getRefreshToken() );
             signUP(fbUser);
+        }else if( requestCode == SmartMirrorAPI.Permisions.FACEBOOK_ALERT_REQUEST){
+            // validate accepted
+            if(resultCode == SmartMirrorAPI.Permisions.FACEBOOK_ALERT_ACCEPTED){
+                facebookButton.callOnClick();
+            }
         }
         else{ //facebook callback
             callbackManager.onActivityResult(requestCode, resultCode, data);

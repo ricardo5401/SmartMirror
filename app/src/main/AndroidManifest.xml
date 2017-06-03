@@ -52,7 +52,8 @@
         <activity
             android:name=".activities.PhotoActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.FacebookConfirmActivity"></activity>
     </application>
 
 </manifest>
