@@ -160,7 +160,7 @@ public class HomeActivity extends BaseActivity {
         }
     };
     private void startPhotoActivity(){
-        Intent intent = new Intent(this, PhotoActivity.class);
+        Intent intent = new Intent(this, TakePhotoActivity.class);
         intent.putExtra("PhotoName", baseName +
                 String.valueOf(photoCount+1) + ".png");
         intent.putExtra("UserId", user.getForeId());

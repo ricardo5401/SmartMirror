@@ -41,6 +41,14 @@
     <string name="alert_message_1">Reflection utilizara la cuenta de</string>
     <string name="alert_message_2">Google vinculada a  este equipo</string>
     <string name="alert_message_3">para sincronizar  evento y correo</string>
+    <string name="welcome_text">BIENVENIDO</string>
+    <string name="config_mirror_tip">configura tu espejo antes</string>
+    <string name="config_mirror_tip_2">de empezar a usarlo</string>
+    <string name="start_text">¡Empecemos!</string>
+    <string name="personal_data">DATOS PERSONALES</string>
+    <string name="user_form_job">OCUPACION</string>
+    <string name="user_form_job_area">AREA DE TRABAJO</string>
+    <string name="photo_title">FOTOS</string>
     <string-array name="gender_array">
         <item>Masculino</item>
         <item>Femenino</item>

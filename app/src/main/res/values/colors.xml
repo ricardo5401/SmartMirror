@@ -11,4 +11,5 @@
     <color name="ColorBlack">#000000</color>
     <color name="ColorLightGray">#EDEDED</color>
     <color name="ColorAlertGray">#EDEDED</color>
+    <color name="ColorGreen">#139780</color>
 </resources>

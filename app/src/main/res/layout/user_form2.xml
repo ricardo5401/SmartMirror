@@ -6,7 +6,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:paddingLeft="@dimen/padding_edit_text"
         android:paddingRight="@dimen/padding_edit_text"
         android:orientation="vertical">
@@ -14,65 +13,73 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
             android:layout_marginBottom="@dimen/margin_bottom_edit_text"
-            android:text="@string/update_user_form_name" />
+            android:text="@string/user_form_birth_date" />
 
         <EditText
-            android:id="@+id/editTextName"
+            android:id="@+id/birthDateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
-            android:hint="@string/update_user_form_name" />
+            android:hint="@string/user_form_birth_date" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_edit_text"
             android:layout_marginBottom="@dimen/margin_bottom_edit_text"
-            android:text="@string/update_user_form_last_name" />
+            android:text="@string/user_form_job" />
 
         <EditText
-            android:id="@+id/editTextLastName"
+            android:id="@+id/jobEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
-            android:hint="@string/update_user_form_last_name" />
+            android:hint="@string/user_form_job" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_edit_text"
             android:layout_marginBottom="@dimen/margin_bottom_edit_text"
-            android:text="@string/update_user_form_gender" />
+            android:text="@string/user_form_job_area" />
 
-        <Spinner
-            android:id="@+id/genderSpinner"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/jobAreaEditText"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
-            android:background="@color/colorIcons" />
+            android:background="@color/colorIcons"
+            android:hint="@string/user_form_job_area" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="40dp">
-        </LinearLayout>
-
-        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_right_arrow"
-            android:id="@+id/saveButton"
-            android:layout_gravity="center"
-            android:background="@drawable/circle_button"
-            android:padding="8dp"/>
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center_horizontal">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_left_arrow"
+                android:id="@+id/prevButton"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_button"
+                android:padding="8dp"
+                android:layout_marginRight="5dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="30dp">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_right_arrow"
+                android:id="@+id/nextButton"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_button"
+                android:padding="8dp"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -113,8 +113,7 @@ public class LoginActivity extends BaseActivity {
         User user = User.findByEmail(email);
         if(user != null){
             Log.e("LOGIN_ACTIVITY", "User loaded");
-            logUser(user);
-            goToHome(user);
+            checkUserFields(user);
         }else{
             showLogin();
         }
@@ -292,7 +291,7 @@ public class LoginActivity extends BaseActivity {
                                     .setWidgetsId(response.getInt("WidgetsId"));
                             Log.i(SIGNUP_TAG, "sign up sucess!! with id: " + String.valueOf(user.getId()));
                             logUser(user);
-                            checkUserFields(user);
+                            goToWelcome(user);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

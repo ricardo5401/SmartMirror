@@ -148,12 +148,12 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void checkUserFields(User user){
+        saveUser(user);
         Log.i(SIGNIN_TAG, "Checking user");
         if(user.requireUpdate()){
             Log.i("USER_LOADED", "REQUIRE_UPDATE");
-            goToUpdateUser(user);
+            goToWelcome(user);
         }else{
-            saveUser(user);
             goToHome(user);
         }
     }
@@ -176,8 +176,14 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToWelcome(User user){
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
+
     public void goToUpdateUser(User user){
-        Intent intent = new Intent(this, UpdateUserActivity.class);
+        Intent intent = new Intent(this, PersonalDataActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

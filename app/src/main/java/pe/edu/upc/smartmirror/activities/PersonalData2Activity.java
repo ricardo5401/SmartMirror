@@ -2,42 +2,38 @@ package pe.edu.upc.smartmirror.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 
 import pe.edu.upc.smartmirror.R;
 import pe.edu.upc.smartmirror.backend.models.User;
 
-public class UpdateUserActivity extends BaseActivity {
+public class PersonalData2Activity extends BaseActivity {
 
     final static int PICKER_DIALOG = 999;
-    Spinner spinner;
+    private User user;
+    private Context context;
     private DatePicker datePicker;
     private int year, month, day;
     EditText birthDateEditText;
-    EditText editTextName;
-    EditText editTextLastName;
-    ImageButton saveButton;
-    User user;
+    ImageButton prevButton;
+    ImageButton nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_user);
-        Log.e("UPDATE_USER_ACTIVITY", "start activity");
+        setContentView(R.layout.activity_personal_data2);
         user = (User) getIntent().getSerializableExtra("user");
         validateUser();
     }
-
     private void validateUser(){
         if(user == null || user.getForeId() < 0){
             goToLogin();
@@ -45,26 +41,29 @@ public class UpdateUserActivity extends BaseActivity {
             initializeComponents();
         }
     }
+
     private void initializeComponents(){
-        initializeEditText();
-        initializeSpinner();
         initializeDatePicker();
-        saveButton = (ImageButton) findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = (ImageButton) findViewById(R.id.nextButton);
+        prevButton = (ImageButton) findViewById(R.id.prevButton);
+        context = this;
+        prevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buildUser();
-                update(user, true);
+                PersonalData2Activity.super.onBackPressed();
             }
         });
-    }
-
-    private void initializeEditText(){
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user.setBirthDate(birthDateEditText.getText().toString());
+                update(user, false);
+                Intent intent = new Intent(context, PhotoActivity.class);
+                intent.putExtra("user_id", user.getForeId());
+                startActivity(intent);
+            }
+        });
         birthDateEditText = (EditText) findViewById(R.id.birthDateEditText);
-        editTextLastName = (EditText) findViewById(R.id.editTextLastName);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        editTextName.setText(user.getFirstName());
-        editTextLastName.setText(user.getLastName());
         birthDateEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -75,28 +74,9 @@ public class UpdateUserActivity extends BaseActivity {
         });
     }
 
-    private void buildUser(){
-        user.setGender((String) spinner.getSelectedItem())
-            .setBirthDate(birthDateEditText.getText().toString())
-            .setFirstName(editTextName.getText().toString())
-            .setLastName(editTextLastName.getText().toString());
-    }
-
-    private void initializeSpinner(){
-        spinner = (Spinner) findViewById(R.id.genderSpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.gender_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        String gender = user.getGender();
-        spinner.setSelection((gender == "Femenino") ? 1 : 0);
-    }
-
     private void initializeDatePicker(){
-        datePicker = new DatePicker(new android.view.ContextThemeWrapper(this.getBaseContext(), android.R.style.Theme_Holo_Light_Dialog_NoActionBar));
+        datePicker = new DatePicker(new android.view.ContextThemeWrapper(this.getBaseContext(),
+                android.R.style.Theme_Holo_Light_Dialog_NoActionBar));
         year = datePicker.getYear();
         month = datePicker.getMonth();
         day = datePicker.getDayOfMonth();

@@ -47,13 +47,16 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".activities.UpdateUserActivity" />
+        <activity android:name=".activities.PersonalDataActivity" />
         <activity android:name=".activities.HomeActivity" />
         <activity
-            android:name=".activities.PhotoActivity"
+            android:name=".activities.TakePhotoActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.FacebookConfirmActivity"></activity>
+        <activity android:name=".activities.FacebookConfirmActivity" />
+        <activity android:name=".activities.WelcomeActivity" />
+        <activity android:name=".activities.PersonalData2Activity" />
+        <activity android:name=".activities.PhotoActivity"></activity>
     </application>
 
 </manifest>
