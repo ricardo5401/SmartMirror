@@ -32,7 +32,7 @@ public class PersonalDataActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_data);
         Log.e("UPDATE_USER_ACTIVITY", "start activity");
-        user = (User) getIntent().getSerializableExtra("user");
+        user = getCurrentUser();
         validateUser();
     }
 
@@ -52,8 +52,8 @@ public class PersonalDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 buildUser();
+                user.save();
                 Intent intent = new Intent(context, PersonalData2Activity.class);
-                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });

@@ -56,7 +56,8 @@
         <activity android:name=".activities.FacebookConfirmActivity" />
         <activity android:name=".activities.WelcomeActivity" />
         <activity android:name=".activities.PersonalData2Activity" />
-        <activity android:name=".activities.PhotoActivity"></activity>
+        <activity android:name=".activities.PhotoActivity" />
+        <activity android:name=".activities.ReadyActivity"></activity>
     </application>
 
 </manifest>

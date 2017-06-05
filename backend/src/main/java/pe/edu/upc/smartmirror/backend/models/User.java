@@ -129,7 +129,7 @@ public class User extends SugarRecord implements Serializable {
     public boolean requireUpdate(){
         return invalidStringField(this.email) || invalidStringField(this.firstName) ||
                 invalidStringField(this.birthDate) || invalidStringField(this.lastName) ||
-                invalidStringField(this.gender);
+                invalidStringField(this.gender) || pictureCount < 3;
     }
 
     public static User findByEmail(String email){

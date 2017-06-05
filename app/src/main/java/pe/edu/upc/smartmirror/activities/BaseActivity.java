@@ -18,6 +18,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.facebook.login.LoginManager;
 
 import org.json.JSONException;
@@ -79,7 +80,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void update(final User user, final boolean toMain){
         Log.i(UPDATE_TAG, "updating user");
         logUser(user);
-        showDialogLoading("Updating...");
         String url = SmartMirrorAPI.Server.USER_URL + "/" + String.valueOf( user.getForeId() );
         Log.i(UPDATE_TAG, "URL: " + url);
         AndroidNetworking.put(url)
@@ -178,13 +178,6 @@ public class BaseActivity extends AppCompatActivity {
 
     public void goToWelcome(User user){
         Intent intent = new Intent(this, WelcomeActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
-
-    public void goToUpdateUser(User user){
-        Intent intent = new Intent(this, PersonalDataActivity.class);
-        intent.putExtra("user", user);
         startActivity(intent);
     }
 
@@ -254,14 +247,9 @@ public class BaseActivity extends AppCompatActivity {
         Log.i("STORAGE_USER", "Removed!");
     }
 
-
-    protected boolean genderToBoolean(String gender){
-        if(gender == "" || gender == null){
-            return false;
-        }else return gender == "female";
-    }
-    protected String genderToString(boolean gender){
-        return gender ? "female" : "male";
+    protected User getCurrentUser(){
+        String email = loadEmail();
+        return email != null ? User.findByEmail(email) : null;
     }
 
     protected Uri getPhotoUri(String name){

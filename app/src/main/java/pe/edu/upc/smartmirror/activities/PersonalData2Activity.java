@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
@@ -23,7 +26,7 @@ public class PersonalData2Activity extends BaseActivity {
     private Context context;
     private DatePicker datePicker;
     private int year, month, day;
-    EditText birthDateEditText;
+    EditText birthDateEditText, jobEditText, jobAreaEditText;
     ImageButton prevButton;
     ImageButton nextButton;
 
@@ -31,19 +34,21 @@ public class PersonalData2Activity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_data2);
-        user = (User) getIntent().getSerializableExtra("user");
+        user = getCurrentUser();
         validateUser();
     }
     private void validateUser(){
         if(user == null || user.getForeId() < 0){
             goToLogin();
         }else{
+            Log.e("PERSONAL_DATA", "stage 2");
+            logUser(user);
             initializeComponents();
+            initializeDatePicker();
         }
     }
 
     private void initializeComponents(){
-        initializeDatePicker();
         nextButton = (ImageButton) findViewById(R.id.nextButton);
         prevButton = (ImageButton) findViewById(R.id.prevButton);
         context = this;
@@ -56,14 +61,19 @@ public class PersonalData2Activity extends BaseActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if(isValidFields()){
                 user.setBirthDate(birthDateEditText.getText().toString());
                 update(user, false);
+                user.save();
                 Intent intent = new Intent(context, PhotoActivity.class);
-                intent.putExtra("user_id", user.getForeId());
                 startActivity(intent);
+            }else{ showMessage("Por favor completa los campos"); }
             }
         });
+        nextButton.setEnabled(false);
         birthDateEditText = (EditText) findViewById(R.id.birthDateEditText);
+        jobEditText = (EditText) findViewById(R.id.jobEditText);
+        jobAreaEditText = (EditText) findViewById(R.id.jobAreaEditText);
         birthDateEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -72,15 +82,44 @@ public class PersonalData2Activity extends BaseActivity {
                 return false;
             }
         });
+        jobAreaEditText.addTextChangedListener(textWatcher);
+        jobEditText.addTextChangedListener(textWatcher);
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if(isValidFields()){
+                nextButton.setEnabled(true);
+                nextButton.setBackground(getDrawable(R.drawable.circle_button));
+                nextButton.setImageResource(R.drawable.ic_right_arrow);
+            }
+        }
+    };
+
+    private boolean isValidFields(){
+        return !jobEditText.getText().toString().isEmpty() &&
+                !jobAreaEditText.getText().toString().isEmpty();
     }
 
     private void initializeDatePicker(){
         datePicker = new DatePicker(new android.view.ContextThemeWrapper(this.getBaseContext(),
                 android.R.style.Theme_Holo_Light_Dialog_NoActionBar));
-        year = datePicker.getYear();
-        month = datePicker.getMonth();
-        day = datePicker.getDayOfMonth();
-        showDate(year, month, day);
+        String date = user.getBirthDate();
+        if(date != null && !date.isEmpty()){
+            birthDateEditText.setText(date);
+        }else{
+            year = datePicker.getYear();
+            month = datePicker.getMonth();
+            day = datePicker.getDayOfMonth();
+            showDate(year, month, day);
+        }
     }
 
     @Override

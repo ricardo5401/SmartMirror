@@ -14,7 +14,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     Button mStartConfigButton;
     Context mContext;
-    User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +24,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void initialize(){
         mContext = this;
-        mUser = (User) getIntent().getSerializableExtra("user");
         mStartConfigButton = (Button) findViewById(R.id.startConfigButton);
         mStartConfigButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PersonalDataActivity.class);
-                intent.putExtra("user", mUser);
                 startActivity(intent);
             }
         });
