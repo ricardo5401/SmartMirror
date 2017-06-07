@@ -100,14 +100,14 @@ public class BaseActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.i(UPDATE_TAG, "success!!");
                         saveUser(user);
-                        if(toMain){ goToHome(user); }
+                        if(toMain){ goToHome(); }
                     }
                     @Override
                     public void onError(ANError error) {
                         if(error.getErrorCode() == 0){
                             Log.e(UPDATE_TAG, "Corregir la respuesta del servidor, retorno no content");
                             saveUser(user);
-                            if(toMain){ goToHome(user); }
+                            if(toMain){ goToHome(); }
                         }else{
                             manageNetworkError(error, UPDATE_TAG);
                             showError("Ocurrio un error al actualizar, intenta mas tarde");
@@ -154,14 +154,12 @@ public class BaseActivity extends AppCompatActivity {
             Log.i("USER_LOADED", "REQUIRE_UPDATE");
             goToWelcome(user);
         }else{
-            goToHome(user);
+            goToHome();
         }
     }
 
-    public void goToHome(User user){
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+    public void goToHome(){
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     public void goToLogin(){
@@ -170,10 +168,8 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToSettings(int userId){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        intent.putExtra("userId", userId);
-        startActivity(intent);
+    public void goToSettings(){
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 
     public void goToWelcome(User user){

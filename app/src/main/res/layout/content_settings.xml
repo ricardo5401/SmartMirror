@@ -9,20 +9,55 @@
         android:paddingLeft="@dimen/padding_edit_text"
         android:paddingRight="@dimen/padding_edit_text"
         android:orientation="vertical"
-        android:paddingTop="80dp">
+        android:paddingTop="85dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/select_widgets"
+                android:textColor="@color/ColorBlack"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="20dp"
+                android:layout_marginTop="8dp"
+                android:width="20dp"
+                android:height="2dp"
+                android:background="@color/ColorBlack"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/ColorGray"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="Reloj"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:text="HORA" />
 
             <Switch
                 android:id="@+id/clockSwitch"
@@ -36,20 +71,21 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#ececec"></LinearLayout>
+            android:background="@color/ColorGray"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Clima"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                android:text="CLIMA"
+                android:layout_gravity="center_vertical"/>
             <Switch
                 android:id="@+id/weatherSwitch"
                 android:layout_width="wrap_content"
@@ -62,20 +98,21 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#ececec"></LinearLayout>
+            android:background="@color/ColorGray"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Noticias"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                android:text="NOTICIAS"
+                android:layout_gravity="center_vertical"/>
             <Switch
                 android:id="@+id/newsSwitch"
                 android:layout_width="wrap_content"
@@ -88,20 +125,21 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#ececec"></LinearLayout>
+            android:background="@color/ColorGray"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Calendario"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                android:text="CALENDARIO"
+                android:layout_gravity="center_vertical"/>
             <Switch
                 android:id="@+id/calendarSwitch"
                 android:layout_width="wrap_content"
@@ -114,25 +152,27 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#ececec"></LinearLayout>
+            android:background="@color/ColorGray"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Juegos"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                android:text="JUEGOS"
+                android:layout_gravity="center_vertical"/>
             <Switch
                 android:id="@+id/playerSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:thumb="@drawable/thumb"
+                android:checked="true"
                 android:track="@drawable/track"/>
         </LinearLayout>
 
@@ -140,20 +180,21 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#ececec"></LinearLayout>
+            android:background="@color/ColorGray"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Correo"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                android:text="CORREO"
+                android:layout_gravity="center_vertical"/>
             <Switch
                 android:id="@+id/mailSwitch"
                 android:layout_width="wrap_content"
@@ -166,7 +207,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="#ececec"></LinearLayout>
+            android:background="@color/ColorGray"></LinearLayout>
 
     </LinearLayout>
 

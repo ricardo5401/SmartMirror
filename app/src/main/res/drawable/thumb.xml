@@ -5,8 +5,8 @@
             android:visible="true"
             android:dither="true"
             android:useLevel="false">
-            <gradient android:startColor="#393939"
-                android:endColor="#393939"
+            <gradient android:startColor="@color/colorIcons"
+                android:endColor="@color/colorIcons"
                 android:angle="270"/>
             <corners android:radius="36dp"/>
             <size android:width="30dp"
@@ -20,8 +20,8 @@
             android:visible="true"
             android:dither="true"
             android:useLevel="false">
-            <gradient android:startColor="#ececec"
-                android:endColor="#ececec"
+            <gradient android:startColor="@color/colorIcons"
+                android:endColor="@color/colorIcons"
                 android:angle="270"/>
             <corners android:radius="30dp"/>
             <size android:width="30dp"

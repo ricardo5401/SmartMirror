@@ -49,6 +49,13 @@
     <string name="user_form_job">OCUPACION</string>
     <string name="user_form_job_area">AREA DE TRABAJO</string>
     <string name="photo_title">FOTOS</string>
+    <string name="ready_part_1">!El espejo esta listo</string>
+    <string name="ready_part_2">para reconocerte!</string>
+    <string name="home_text">¡HOLA</string>
+    <string name="widgets_button">Elegir widgets</string>
+    <string name="photo_button">Añadir fotos</string>
+    <string name="update_button">Actualizar datos</string>
+    <string name="select_widgets">SELECCIONAR WIDGETS</string>
     <string-array name="gender_array">
         <item>Masculino</item>
         <item>Femenino</item>

@@ -34,7 +34,7 @@ public class SettingsActivity extends BaseActivity {
         mCalendarSwitch = (Switch) findViewById(R.id.calendarSwitch);
         mPlayerSwitch = (Switch) findViewById(R.id.playerSwitch);
         mMailSwitch = (Switch) findViewById(R.id.mailSwitch);
-        mUserId = getIntent().getIntExtra("userId", 0);
+        mUserId = getCurrentUser().getForeId();
         if(mUserId > 0){
             mWidget = Widget.findOrCreate(mUserId);
             setSwitchState();

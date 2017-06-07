@@ -35,12 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorIcons"
-            android:text="!El espejo esta listo"/>
+            android:textSize="16dp"
+            android:text="@string/ready_part_1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorIcons"
-            android:text="para reconocerte!"
+            android:textSize="16dp"
+            android:text="@string/ready_part_2"
             android:layout_gravity="center"/>
     </LinearLayout>
 

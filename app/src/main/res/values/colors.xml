@@ -12,4 +12,5 @@
     <color name="ColorLightGray">#EDEDED</color>
     <color name="ColorAlertGray">#EDEDED</color>
     <color name="ColorGreen">#139780</color>
+    <color name="ColorGray">#a8a8a8</color>
 </resources>

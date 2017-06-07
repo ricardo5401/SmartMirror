@@ -5,10 +5,7 @@
     <!-- "Mark Favorite", should appear as action button if possible -->
 
     <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/settings"
-        android:title="Settings"
-        app:showAsAction="never"/>
     <item android:id="@+id/cerrar_sesion"
-        android:title="Cerrar sesion"
+        android:title="Salir"
         app:showAsAction="never"/>
 </menu>

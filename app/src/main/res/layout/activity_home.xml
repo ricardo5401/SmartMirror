@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorIcons"
+    android:background="@color/ColorLightGray"
     tools:context="pe.edu.upc.smartmirror.activities.HomeActivity">
 
     <android.support.design.widget.AppBarLayout

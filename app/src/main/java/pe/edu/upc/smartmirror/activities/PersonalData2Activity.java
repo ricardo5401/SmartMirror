@@ -65,8 +65,7 @@ public class PersonalData2Activity extends BaseActivity {
                 user.setBirthDate(birthDateEditText.getText().toString());
                 update(user, false);
                 user.save();
-                Intent intent = new Intent(context, PhotoActivity.class);
-                startActivity(intent);
+                gotToNextActivity();
             }else{ showMessage("Por favor completa los campos"); }
             }
         });
@@ -84,6 +83,14 @@ public class PersonalData2Activity extends BaseActivity {
         });
         jobAreaEditText.addTextChangedListener(textWatcher);
         jobEditText.addTextChangedListener(textWatcher);
+    }
+
+    private void gotToNextActivity(){
+        if(user.getPictureCount() > 2){
+            goToHome();
+        }else{
+            startActivity(new Intent(context, PhotoActivity.class));
+        }
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
