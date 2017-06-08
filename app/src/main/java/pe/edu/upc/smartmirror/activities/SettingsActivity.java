@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 import pe.edu.upc.smartmirror.R;
@@ -19,6 +20,7 @@ public class SettingsActivity extends BaseActivity {
     Switch mMailSwitch;
     Widget mWidget;
     int mUserId;
+    ImageButton cancelButton, saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class SettingsActivity extends BaseActivity {
         mCalendarSwitch = (Switch) findViewById(R.id.calendarSwitch);
         mPlayerSwitch = (Switch) findViewById(R.id.playerSwitch);
         mMailSwitch = (Switch) findViewById(R.id.mailSwitch);
+        cancelButton = (ImageButton) findViewById(R.id.cancelSettings);
+        saveButton = (ImageButton) findViewById(R.id.saveSettings);
         mUserId = getCurrentUser().getForeId();
         if(mUserId > 0){
             mWidget = Widget.findOrCreate(mUserId);
@@ -46,7 +50,7 @@ public class SettingsActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Configuracion");
+        getSupportActionBar().setTitle("");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +74,20 @@ public class SettingsActivity extends BaseActivity {
         mCalendarSwitch.setOnClickListener(onChangeSwitch);
         mPlayerSwitch.setOnClickListener(onChangeSwitch);
         mMailSwitch.setOnClickListener(onChangeSwitch);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWidget.save();
+                updateWidget(mWidget);
+                showMessage("Guardado!");
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHome();
+            }
+        });
     }
 
     private View.OnClickListener onChangeSwitch = new View.OnClickListener() {
@@ -81,8 +99,6 @@ public class SettingsActivity extends BaseActivity {
             mWidget.setCalendar(mCalendarSwitch.isChecked());
             mWidget.setPlayer(mPlayerSwitch.isChecked());
             mWidget.setMail(mMailSwitch.isChecked());
-            mWidget.save();
-            updateWidget(mWidget);
         }
     };
 }

@@ -23,6 +23,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
+            android:inputType="text"
+            android:maxLines="1"
             android:hint="@string/user_form_birth_date" />
 
         <TextView
@@ -38,6 +40,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
+            android:inputType="text"
+            android:maxLines="1"
             android:hint="@string/user_form_job" />
 
         <TextView
@@ -53,6 +57,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
+            android:inputType="text"
+            android:maxLines="1"
             android:hint="@string/user_form_job_area" />
 
         <LinearLayout

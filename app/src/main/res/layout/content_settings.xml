@@ -209,6 +209,34 @@
             android:layout_marginTop="10dp"
             android:background="@color/ColorGray"></LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/cancel_button"
+                android:scaleType="fitXY"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:id="@+id/cancelSettings"/>
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/save_button"
+                android:scaleType="fitXY"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:id="@+id/saveSettings"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

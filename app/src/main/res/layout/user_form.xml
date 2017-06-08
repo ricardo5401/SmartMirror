@@ -21,6 +21,8 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
             android:hint="@string/update_user_form_name" />
@@ -38,6 +40,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_edit_text"
             android:background="@color/colorIcons"
+            android:inputType="text"
+            android:maxLines="1"
             android:hint="@string/update_user_form_last_name" />
 
         <TextView
