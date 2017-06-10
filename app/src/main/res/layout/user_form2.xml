@@ -34,15 +34,12 @@
             android:layout_marginBottom="@dimen/margin_bottom_edit_text"
             android:text="@string/user_form_job" />
 
-        <EditText
-            android:id="@+id/jobEditText"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/occupationSpinner"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:padding="@dimen/padding_edit_text"
-            android:background="@color/colorIcons"
-            android:inputType="text"
-            android:maxLines="1"
-            android:hint="@string/user_form_job" />
+            android:background="@color/colorIcons" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,15 +48,13 @@
             android:layout_marginBottom="@dimen/margin_bottom_edit_text"
             android:text="@string/user_form_job_area" />
 
-        <EditText
-            android:id="@+id/jobAreaEditText"
-            android:layout_width="match_parent"
+
+        <Spinner
+            android:id="@+id/areaSpinner"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:padding="@dimen/padding_edit_text"
-            android:background="@color/colorIcons"
-            android:inputType="text"
-            android:maxLines="1"
-            android:hint="@string/user_form_job_area" />
+            android:background="@color/colorIcons" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -84,7 +79,7 @@
                 android:id="@+id/nextButton"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circle_button_gray"
+                android:background="@drawable/circle_button"
                 android:padding="8dp"/>
         </LinearLayout>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Smart Mirror</string>
+    <string name="app_name">Reflection</string>
     <string name="title_activity_login">Iniciar Sesion</string>
 
     <!-- Strings related to login -->
@@ -11,7 +11,8 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="facebook_app_id">753492908146397</string>
+    <string name="facebook_app_id">191447414715383</string>
+    <string name="fb_login_protocol_scheme">fb191447414715383</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
     </string>
     <string name="user_first_name_hint">First Name</string>
@@ -59,5 +60,24 @@
     <string-array name="gender_array">
         <item>Masculino</item>
         <item>Femenino</item>
+    </string-array>
+    <string-array name="occupation">
+        <item>Estudiante universitario</item>
+        <item>Trabajador</item>
+        <item>Ambos</item>
+    </string-array>
+    <string-array name="area">
+        <item>Administracion y hoteleria</item>
+        <item>Arquitectura</item>
+        <item>Artes Contemporaneras</item>
+        <item>Ciencias de la Salud</item>
+        <item>Comunicaciones</item>
+        <item>Derecho</item>
+        <item>Diseño</item>
+        <item>Economia</item>
+        <item>Educacion</item>
+        <item>Ingenieria e informatica</item>
+        <item>Negocios</item>
+        <item>Psicologia</item>
     </string-array>
 </resources>

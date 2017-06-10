@@ -12,9 +12,15 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import pe.edu.upc.smartmirror.R;
 import pe.edu.upc.smartmirror.backend.models.User;
@@ -26,7 +32,8 @@ public class PersonalData2Activity extends BaseActivity {
     private Context context;
     private DatePicker datePicker;
     private int year, month, day;
-    EditText birthDateEditText, jobEditText, jobAreaEditText;
+    EditText birthDateEditText;
+    Spinner occupationSpinner, areaSpinner;
     ImageButton prevButton;
     ImageButton nextButton;
 
@@ -51,6 +58,7 @@ public class PersonalData2Activity extends BaseActivity {
     private void initializeComponents(){
         nextButton = (ImageButton) findViewById(R.id.nextButton);
         prevButton = (ImageButton) findViewById(R.id.prevButton);
+        nextButton.setEnabled(true);
         context = this;
         prevButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,18 +69,11 @@ public class PersonalData2Activity extends BaseActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if(isValidFields()){
-                user.setBirthDate(birthDateEditText.getText().toString());
-                update(user, false);
-                user.save();
-                gotToNextActivity();
-            }else{ showMessage("Por favor completa los campos"); }
+            updateUser();
+            gotToNextActivity();
             }
         });
-        nextButton.setEnabled(false);
         birthDateEditText = (EditText) findViewById(R.id.birthDateEditText);
-        jobEditText = (EditText) findViewById(R.id.jobEditText);
-        jobAreaEditText = (EditText) findViewById(R.id.jobAreaEditText);
         birthDateEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -81,8 +82,35 @@ public class PersonalData2Activity extends BaseActivity {
                 return false;
             }
         });
-        jobAreaEditText.addTextChangedListener(textWatcher);
-        jobEditText.addTextChangedListener(textWatcher);
+        initializeSpinner();
+    }
+
+    private void initializeSpinner(){
+        occupationSpinner = (Spinner) findViewById(R.id.occupationSpinner);
+        areaSpinner = (Spinner) findViewById(R.id.areaSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> areaAdapter = ArrayAdapter.createFromResource(this,
+                R.array.area, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.occupation, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        occupationSpinner.setAdapter(adapter);
+        areaSpinner.setAdapter(areaAdapter);
+        int occupation = adapter.getPosition(user.getOccupation());
+        int area = areaAdapter.getPosition(user.getArea());
+        areaSpinner.setSelection(area);
+        occupationSpinner.setSelection(occupation);
+    }
+
+    private void updateUser(){
+        user.setBirthDate(birthDateEditText.getText().toString());
+        user.setArea((String) areaSpinner.getSelectedItem());
+        user.setOccupation((String) occupationSpinner.getSelectedItem());
+        update(user, false);
+        user.save();
     }
 
     private void gotToNextActivity(){
@@ -93,40 +121,30 @@ public class PersonalData2Activity extends BaseActivity {
         }
     }
 
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if(isValidFields()){
-                nextButton.setEnabled(true);
-                nextButton.setBackground(getDrawable(R.drawable.circle_button));
-                nextButton.setImageResource(R.drawable.ic_right_arrow);
-            }
-        }
-    };
-
-    private boolean isValidFields(){
-        return !jobEditText.getText().toString().isEmpty() &&
-                !jobAreaEditText.getText().toString().isEmpty();
-    }
-
     private void initializeDatePicker(){
         datePicker = new DatePicker(new android.view.ContextThemeWrapper(this.getBaseContext(),
                 android.R.style.Theme_Holo_Light_Dialog_NoActionBar));
         String date = user.getBirthDate();
         if(date != null && !date.isEmpty()){
-            birthDateEditText.setText(date);
+            birthDateEditText.setText(formatDate(date));
         }else{
             year = datePicker.getYear();
             month = datePicker.getMonth();
             day = datePicker.getDayOfMonth();
             showDate(year, month, day);
         }
+    }
+
+    private String formatDate(String date){
+
+        try {
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            Date parsed = f.parse(date);
+            date = f.format(parsed);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     @Override

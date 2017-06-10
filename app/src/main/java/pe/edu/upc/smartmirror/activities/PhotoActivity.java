@@ -112,7 +112,9 @@ public class PhotoActivity extends BaseActivity {
     }
 
     private void updatePermissionsDependentFeatures() {
-        Log.i(TAG, "Permission granted");
+        photoImageButton1.setEnabled(cameraAvailable);
+        photoImageButton2.setEnabled(cameraAvailable);
+        photoImageButton3.setEnabled(cameraAvailable);
         if(cameraAvailable)
             setButtonsStates(); //check photos
     }

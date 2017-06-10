@@ -1,8 +1,6 @@
 package pe.edu.upc.smartmirror.activities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +16,6 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
@@ -148,7 +145,6 @@ public class LoginActivity extends BaseActivity {
 
 
     private void initializeFacebookAuth(){
-        FacebookSdk.sdkInitialize(getApplicationContext());
         facebookButton = (LoginButton) findViewById(R.id.facebookButton);
         facebookButton.setReadPermissions(Facebook.ReadPermission());
         facebookButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {

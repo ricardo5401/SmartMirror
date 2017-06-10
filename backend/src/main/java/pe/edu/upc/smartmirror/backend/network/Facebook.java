@@ -17,7 +17,7 @@ import pe.edu.upc.smartmirror.backend.models.User;
 
 public class Facebook {
     public static List<String> ReadPermission(){
-        return Arrays.asList("public_profile", "email", "user_birthday", "user_friends");
+        return Arrays.asList("public_profile", "email", "user_friends");
     }
 
     public static User SignInResult(JSONObject result){

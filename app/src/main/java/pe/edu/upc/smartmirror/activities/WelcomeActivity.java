@@ -10,7 +10,7 @@ import android.widget.Button;
 import pe.edu.upc.smartmirror.R;
 import pe.edu.upc.smartmirror.backend.models.User;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     Button mStartConfigButton;
     Context mContext;
@@ -32,5 +32,11 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        logout();
     }
 }

@@ -239,7 +239,10 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void removerSavedEmail(){
-        getSharedPreferences("prefs", MODE_PRIVATE).edit().remove("email").apply();
+        SharedPreferences.Editor sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE).edit();
+        sharedPreferences.remove("email");
+        sharedPreferences.clear();
+        sharedPreferences.commit();
         Log.i("STORAGE_USER", "Removed!");
     }
 

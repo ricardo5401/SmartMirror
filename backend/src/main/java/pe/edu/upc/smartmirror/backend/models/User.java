@@ -27,6 +27,8 @@ public class User extends SugarRecord implements Serializable {
     private int foreId;
     private int widgetsId;
     private String refreshToken;
+    private String area;
+    private String occupation;
 
     public User(){
         pictureCount = 0;
@@ -158,5 +160,21 @@ public class User extends SugarRecord implements Serializable {
             Log.i("BUILD_USER", e.getMessage());
             return null;
         }
+    }
+
+    public String getArea() {
+        return invalidStringField( area ) ? "" : area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getOccupation() {
+        return invalidStringField( occupation ) ? "" : occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 }
