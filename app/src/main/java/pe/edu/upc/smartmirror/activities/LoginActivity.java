@@ -244,7 +244,6 @@ public class LoginActivity extends BaseActivity {
                             logUser(authenticatedUser);
                             checkUserFields(authenticatedUser);
                         }else{
-
                             signUP(user);
                         }
                     }
@@ -287,7 +286,7 @@ public class LoginActivity extends BaseActivity {
                                     .setWidgetsId(response.getInt("WidgetsId"));
                             Log.i(SIGNUP_TAG, "sign up sucess!! with id: " + String.valueOf(user.getId()));
                             logUser(user);
-                            goToWelcome(user);
+                            checkUserFields(user);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
