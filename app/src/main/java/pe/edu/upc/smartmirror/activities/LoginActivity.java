@@ -110,7 +110,7 @@ public class LoginActivity extends BaseActivity {
         User user = User.findByEmail(email);
         if(user != null){
             Log.e("LOGIN_ACTIVITY", "User loaded");
-            checkUserFields(user);
+            signIn(user);
         }else{
             showLogin();
         }
@@ -223,7 +223,7 @@ public class LoginActivity extends BaseActivity {
             showLoading();
             signIn(user);
         }else{
-            showMessage("Unknown error, please try again");
+            showMessage("Error desconocido, intenta otra vez");
         }
     }
 
@@ -310,7 +310,7 @@ public class LoginActivity extends BaseActivity {
     private void ManageUnkownError(ANError error, String TAG){
         manageNetworkError(error, TAG);
         showLogin();
-        showMessage("Server error, try again");
+        showMessage("Error en el servidor, intenta otra vez");
     }
 
     private class LoaderTask extends TimerTask{

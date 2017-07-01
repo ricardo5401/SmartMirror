@@ -62,7 +62,7 @@
         <item>Femenino</item>
     </string-array>
     <string-array name="occupation">
-        <item>Estudiante universitario</item>
+        <item>Estudiante Universitario</item>
         <item>Trabajador</item>
         <item>Ambos</item>
     </string-array>

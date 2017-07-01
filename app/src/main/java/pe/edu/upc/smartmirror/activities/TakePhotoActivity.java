@@ -115,7 +115,7 @@ public class TakePhotoActivity extends BaseActivity {
                     @Override
                     public void onError(ANError error) {
                         hideDialogLoading();
-                        showMessage("Something is wrong, please contact to RodoLinares");
+                        showMessage("Ops, algo salio mal. contacta a RodoLinares");
                         Log.e(TAG, "Error on send photo");
                         Log.e(TAG, "Error status code: " + String.valueOf(error.getErrorCode()));
                         Log.e(TAG, "Error body: " + error.getErrorBody());
@@ -127,7 +127,7 @@ public class TakePhotoActivity extends BaseActivity {
     private void sendPhotoSuccess(){
         Log.i(TAG, "success!!");
         hideDialogLoading();
-        showMessage("Photo successfully uploaded");
+        showMessage("Se subió la foto exitosamente!!");
         setResult(RESULT_OK);
         finish();
     }

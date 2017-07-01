@@ -136,12 +136,32 @@ public class User extends SugarRecord implements Serializable {
 
     public static User findByEmail(String email){
         List<User> users = User.find(User.class, "email = ?", email);
-        return (users.size() > 0) ? users.get(0) : null;
+        int index = users.size();
+        return (index > 0) ? users.get(index -1) : null;
     }
 
     public static User findByForeId(int foreId){
         List<User> users = User.find(User.class, "fore_id = ?", String.valueOf(foreId));
-        return (users.size() > 0) ? users.get(0) : null;
+        int index = users.size();
+        return (index > 0) ? users.get(index -1) : null;
+    }
+
+    public String getArea() {
+        return invalidStringField( area ) ? "" : area;
+    }
+
+    public User setArea(String area) {
+        this.area = area;
+        return this;
+    }
+
+    public String getOccupation() {
+        return invalidStringField( occupation ) ? "" : occupation;
+    }
+
+    public User setOccupation(String occupation) {
+        this.occupation = occupation;
+        return this;
     }
 
     public static User build(JSONObject object){
@@ -155,6 +175,8 @@ public class User extends SugarRecord implements Serializable {
                     .setEmail(object.getString("Email"))
                     .setAccountType(object.getString("AccountType"))
                     .setPictureCount(object.getInt("PhotoQty"))
+                    .setArea(object.getString("WorkArea"))
+                    .setOccupation(object.getString("Occupation"))
                     .setRefreshToken(object.getString("RefreshToken"));
         } catch (JSONException e) {
             Log.i("BUILD_USER", e.getMessage());
@@ -162,19 +184,4 @@ public class User extends SugarRecord implements Serializable {
         }
     }
 
-    public String getArea() {
-        return invalidStringField( area ) ? "" : area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getOccupation() {
-        return invalidStringField( occupation ) ? "" : occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
 }

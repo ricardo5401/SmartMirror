@@ -109,8 +109,8 @@ public class PersonalData2Activity extends BaseActivity {
         user.setBirthDate(birthDateEditText.getText().toString());
         user.setArea((String) areaSpinner.getSelectedItem());
         user.setOccupation((String) occupationSpinner.getSelectedItem());
-        update(user, false);
         user.save();
+        update(user, false);
     }
 
     private void gotToNextActivity(){

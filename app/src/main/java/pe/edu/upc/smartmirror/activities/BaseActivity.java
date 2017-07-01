@@ -85,13 +85,12 @@ public class BaseActivity extends AppCompatActivity {
         AndroidNetworking.put(url)
                 .addHeaders("Content-Type", "application/x-www-form-urlencoded")
                 .addHeaders("charset", "utf-8")
-                .addBodyParameter("Id", String.valueOf( user.getForeId() ))
                 .addBodyParameter("FirstName", user.getFirstName())
                 .addBodyParameter("LastName", user.getLastName())
                 .addBodyParameter("Gender", user.getGender())
                 .addBodyParameter("BirthDate", user.getBirthDate())
-                .addBodyParameter("Email", user.getEmail())
-                .addBodyParameter("AccountType", user.getAccountType())
+                .addBodyParameter("WorkArea", user.getArea())
+                .addBodyParameter("Occupation", user.getOccupation())
                 .setTag(UPDATE_TAG)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -205,6 +204,8 @@ public class BaseActivity extends AppCompatActivity {
         Log.e(LOG_USER, "Gender: " + user.getGender());
         Log.e(LOG_USER, "BirthDate: " + user.getBirthDate());
         Log.e(LOG_USER, "Pictures: " + String.valueOf(user.getPictureCount()));
+        Log.e(LOG_USER, "WorkeArea: " +user.getArea());
+        Log.e(LOG_USER, "Occupation: " + user.getOccupation());
     }
 
     public void logout(){
